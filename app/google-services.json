@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "435225860302",
+    "firebase_url": "https://movies-wiki.firebaseio.com",
+    "project_id": "movies-wiki",
+    "storage_bucket": "movies-wiki.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435225860302:android:6d5467ec461bf8b5",
+        "android_client_info": {
+          "package_name": "com.tdtruyen.movieswiki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435225860302-29f2k0cdm84rtiuc82ts8dulg3bd67rn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tdtruyen.movieswiki",
+            "certificate_hash": "8f3e17fdfbef6315635542176923ee4191b3d9ae"
+          }
+        },
+        {
+          "client_id": "435225860302-aherrnhf02nhvprkul70l7minsb17i39.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "435225860302-aherrnhf02nhvprkul70l7minsb17i39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTychgrsGupxRUN284StSV3kumdzd4iDc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435225860302-aherrnhf02nhvprkul70l7minsb17i39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
