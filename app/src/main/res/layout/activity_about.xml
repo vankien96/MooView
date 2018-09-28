@@ -32,10 +32,9 @@
         android:layout_marginTop="@dimen/dp_6"
         android:paddingLeft="@dimen/dp_16"
         android:paddingRight="@dimen/dp_16"
-        android:text="Trần Đình Truyền"
+        android:text="Team ClearMen"
         android:textColor="@color/colorText"
-        android:textSize="14sp"
-        />
+        android:textSize="14sp" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -58,10 +57,9 @@
         android:layout_marginTop="@dimen/dp_6"
         android:paddingLeft="@dimen/dp_16"
         android:paddingRight="@dimen/dp_16"
-        android:text="15SI-CLC"
+        android:text="14T2"
         android:textColor="@color/colorText"
-        android:textSize="14sp"
-        />
+        android:textSize="14sp" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

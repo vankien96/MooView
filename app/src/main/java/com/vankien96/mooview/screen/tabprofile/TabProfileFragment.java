@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.facebook.login.LoginManager;
 import com.vankien96.mooview.R;
@@ -23,7 +24,9 @@ import com.vankien96.mooview.screen.BaseFragment;
 import com.vankien96.mooview.screen.about.AboutActivity;
 import com.vankien96.mooview.screen.login.LoginActivity;
 import com.vankien96.mooview.utils.Constant;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -66,7 +69,7 @@ public class TabProfileFragment extends BaseFragment
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tabprofile, container, false);
         initViews(view);
         isLoginWithFacebook();
@@ -150,7 +153,7 @@ public class TabProfileFragment extends BaseFragment
             case R.id.text_feedback:
                 final Intent emailIntent = new Intent(Intent.ACTION_SEND);
                 emailIntent.setType("plain/text");
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{
                         getResources().getString(R.string.truyen_mail),
                         getResources().getString(R.string.thang_mail)
                 });
@@ -162,10 +165,10 @@ public class TabProfileFragment extends BaseFragment
                         getResources().getString(R.string.title_choice_app)));
                 break;
             case R.id.text_setting:
-                Toast.makeText(getActivity(),"Coming soon!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Coming soon!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.text_invite_friend:
-                Toast.makeText(getActivity(),"Coming soon", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Coming soon", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.text_about:
                 Intent intent = new Intent(getActivity(), AboutActivity.class);

@@ -63,12 +63,12 @@ public class TabFavoriteFragment extends BaseFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        mPresenter = new TabFavoritePresenter();
-//        mPresenter.setView(this);
-//        MoviesApi moviesApi = MainApplication.getMoviesApi();
-//        mPresenter.setMovieApi(moviesApi);
-//
-//        mMovieDatabase = MainApplication.getMovieDatabase();
+        mPresenter = new TabFavoritePresenter();
+        mPresenter.setView(this);
+        MoviesApi moviesApi = MainApplication.getMoviesApi();
+        mPresenter.setMovieApi(moviesApi);
+
+        mMovieDatabase = MainApplication.getMovieDatabase();
     }
 
     @Nullable
@@ -76,23 +76,23 @@ public class TabFavoriteFragment extends BaseFragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tabfavorite, container, false);
-        //initView(view);
-        //initDatabaseReference();
+        initView(view);
+        initDatabaseReference();
         return view;
     }
 
     private void initView(View view) {
-//        mRecyclerView = view.findViewById(R.id.recycler_fravorite);
-//        mLayoutManager = new GridLayoutManager(getActivity(), NUMBER_COLUMNS);
-//        mFavoriteAdapter = new FavoriteAdapter(getActivity());
-//        mFavoriteAdapter.setOnFavoriteItemListener(this);
-//        mFavoriteAdapter.setFavoriteAdapterCallback(this);
-//        mRecyclerView.setLayoutManager(mLayoutManager);
-//        mRecyclerView.setAdapter(mFavoriteAdapter);
-//        mLinearLayout = view.findViewById(R.id.linear_favorite_not_found);
-//
-//        mSharedPreferences =
-//                getActivity().getSharedPreferences(Constant.PREF_NAME, Context.MODE_PRIVATE);
+        mRecyclerView = view.findViewById(R.id.recycler_fravorite);
+        mLayoutManager = new GridLayoutManager(getActivity(), NUMBER_COLUMNS);
+        mFavoriteAdapter = new FavoriteAdapter(getActivity());
+        mFavoriteAdapter.setOnFavoriteItemListener(this);
+        mFavoriteAdapter.setFavoriteAdapterCallback(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mFavoriteAdapter);
+        mLinearLayout = view.findViewById(R.id.linear_favorite_not_found);
+
+        mSharedPreferences =
+                getActivity().getSharedPreferences(Constant.PREF_NAME, Context.MODE_PRIVATE);
     }
 
     private void initDatabaseReference() {
@@ -113,12 +113,12 @@ public class TabFavoriteFragment extends BaseFragment
     @Override
     public void onStart() {
         super.onStart();
-//        mPresenter.onStart();
+        mPresenter.onStart();
     }
 
     @Override
     public void onStop() {
-//        mPresenter.onStop();
+        mPresenter.onStop();
         super.onStop();
     }
 
@@ -130,13 +130,13 @@ public class TabFavoriteFragment extends BaseFragment
     @Override
     public void onResume() {
         super.onResume();
-//        new SelectListMovieFromDatabase(mMovieDatabase, this).execute();
+        new SelectListMovieFromDatabase(mMovieDatabase, this).execute();
     }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         if (isVisibleToUser) {
-//            new SelectListMovieFromDatabase(mMovieDatabase, this).execute();
+            new SelectListMovieFromDatabase(mMovieDatabase, this).execute();
         }
     }
 
@@ -183,13 +183,13 @@ public class TabFavoriteFragment extends BaseFragment
     }
 
     public void invisibleRecyclerView() {
-//        mLinearLayout.setVisibility(View.VISIBLE);
-//        mRecyclerView.setVisibility(View.GONE);
+        mLinearLayout.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
     }
 
     public void invisibleNoFavoredLayout() {
-//        mLinearLayout.setVisibility(View.GONE);
-//        mRecyclerView.setVisibility(View.VISIBLE);
+        mLinearLayout.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override

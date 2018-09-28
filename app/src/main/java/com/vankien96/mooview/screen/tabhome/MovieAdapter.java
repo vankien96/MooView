@@ -7,11 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
 import com.vankien96.mooview.R;
 import com.vankien96.mooview.data.model.Movie;
 import com.vankien96.mooview.screen.OnRecyclerViewItemListener;
 import com.vankien96.mooview.utils.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -30,8 +30,8 @@
     <string name="remove_favorite_movie">Remove from favorite list</string>
     <string name="add_favorite_movie">Added to favorite list</string>
     <string name="this_is_logo">This is logo image</string>
-    <string name="facebook_app_id">1060277047446246</string>
-    <string name="fb_login_protocol_scheme">fb1060277047446246</string>
+    <string name="facebook_app_id">2124482791137155</string>
+    <string name="fb_login_protocol_scheme">fb2124482791137155</string>
     <string name="login_failed">Login failed!</string>
     <string name="login_facebook">Login with Facebook</string>
     <string name="login_as_guest">Login as Guest</string>
