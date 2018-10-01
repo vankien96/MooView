@@ -33,18 +33,4 @@
         android:textStyle="bold"
         />
 
-    <Button
-        android:id="@+id/button_login_guest"
-        android:layout_width="@dimen/dp_200"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_login_facebook"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/dp_15"
-        android:background="@drawable/login_guest_button"
-        android:text="@string/login_as_guest"
-        android:textAllCaps="false"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/sp_18"
-        android:textStyle="bold" />
-
 </RelativeLayout>

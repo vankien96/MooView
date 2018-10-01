@@ -24,7 +24,7 @@ public class LoginActivity extends BaseActivity
     LoginContract.Presenter mPresenter;
     private CallbackManager mCallbackManager;
     private LoginManager mLoginManager;
-    private Button mButtonLoginFacebook, mButtonLoginGuest;
+    private Button mButtonLoginFacebook;
     private SharedPreferences mSharedPreferences;
 
     @Override
@@ -43,10 +43,8 @@ public class LoginActivity extends BaseActivity
 
     private void initViews() {
         mButtonLoginFacebook = findViewById(R.id.button_login_facebook);
-        mButtonLoginGuest = findViewById(R.id.button_login_guest);
 
         mButtonLoginFacebook.setOnClickListener(this);
-        mButtonLoginGuest.setOnClickListener(this);
         mSharedPreferences = getSharedPreferences(Constant.PREF_NAME, Context.MODE_PRIVATE);
     }
 
@@ -67,11 +65,6 @@ public class LoginActivity extends BaseActivity
         switch (view.getId()) {
             case R.id.button_login_facebook:
                 mPresenter.doLoginFacebook();
-                break;
-            case R.id.button_login_guest:
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
                 break;
         }
     }
