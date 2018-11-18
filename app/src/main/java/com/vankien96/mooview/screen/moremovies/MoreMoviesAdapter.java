@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.vankien96.mooview.R;
+import com.vankien96.mooview.data.model.Film;
 import com.vankien96.mooview.data.model.Movie;
 import com.vankien96.mooview.screen.OnRecyclerViewItemListener;
 import com.vankien96.mooview.utils.StringUtils;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class MoreMoviesAdapter extends RecyclerView.Adapter<MoreMoviesAdapter.MoreMoviesHolder> {
 
-    private List<Movie> mMovieList = new ArrayList<>();
+    private List<Film> mMovieList = new ArrayList<>();
     private OnRecyclerViewItemListener mOnRecyclerViewItemListener;
     private Context mContext;
     private LayoutInflater mInflater;
@@ -53,7 +54,7 @@ public class MoreMoviesAdapter extends RecyclerView.Adapter<MoreMoviesAdapter.Mo
         mOnRecyclerViewItemListener = onRecyclerViewItemListener;
     }
 
-    public void updateData(List<Movie> movieList) {
+    public void updateData(List<Film> movieList) {
         if (movieList == null) {
             return;
         }
@@ -63,7 +64,7 @@ public class MoreMoviesAdapter extends RecyclerView.Adapter<MoreMoviesAdapter.Mo
 
     static class MoreMoviesHolder extends RecyclerView.ViewHolder {
 
-        private Movie mMovie;
+        private Film mMovie;
         private ImageView mMoreMoviesPoster;
         private TextView mMoreMoviesName;
         private OnRecyclerViewItemListener mOnRecyclerViewItemListener;
@@ -81,11 +82,10 @@ public class MoreMoviesAdapter extends RecyclerView.Adapter<MoreMoviesAdapter.Mo
             });
         }
 
-        public void bind(Movie movie) {
+        public void bind(Film movie) {
             mMovie = movie;
-            String urlPoster = StringUtils.convertPosterPathToUrlPoster(movie.getPosterPath());
-            String titleMovie = StringUtils.convertLongTitleToShortTitle(movie.getTitle(),
-                    movie.getReleaseDate());
+            String urlPoster = movie.getPoster();
+            String titleMovie = movie.getName();
             Glide.with(itemView.getContext()).load(urlPoster).into(mMoreMoviesPoster);
             mMoreMoviesName.setText(titleMovie);
         }

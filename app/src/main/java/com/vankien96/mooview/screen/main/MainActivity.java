@@ -60,14 +60,8 @@ public class MainActivity extends BaseActivity
             case R.id.tabhome:
                 mViewPager.setCurrentItem(Tab.HOME);
                 break;
-            case R.id.tabsearch:
-                mViewPager.setCurrentItem(Tab.SEARCH);
-                break;
             case R.id.tabfavorite:
                 mViewPager.setCurrentItem(Tab.FAVORITE);
-                break;
-            case R.id.tabprofile:
-                mViewPager.setCurrentItem(Tab.PROFILE);
                 break;
             default:
                 break;
@@ -94,12 +88,10 @@ public class MainActivity extends BaseActivity
     /**
      * IntDef Tab.
      */
-    @IntDef({ Tab.HOME, Tab.SEARCH, Tab.FAVORITE, Tab.PROFILE })
+    @IntDef({ Tab.HOME, Tab.FAVORITE })
     public @interface Tab {
         int HOME = 0;
-        int SEARCH = 1;
-        int FAVORITE = 2;
-        int PROFILE = 3;
+        int FAVORITE = 1;
     }
 
     /**

@@ -13,6 +13,7 @@ import android.widget.Button;
 import com.vankien96.mooview.MainApplication;
 import com.vankien96.mooview.R;
 import com.vankien96.mooview.data.datasource.AdsDataSoure;
+import com.vankien96.mooview.data.model.Film;
 import com.vankien96.mooview.data.model.Movie;
 import com.vankien96.mooview.data.service.config.MoviesApi;
 import com.vankien96.mooview.screen.BaseFragment;
@@ -33,13 +34,10 @@ public class TabHomeFragment extends BaseFragment
         implements TabHomeContract.HomeView, OnRecyclerViewItemListener, View.OnClickListener {
 
     TabHomeContract.Presenter mPresenter;
-    private RecyclerView mRecyclerNowPlaying, mRecyclerUpComing, mRecyclerTopRated,
-            mRecyclerPopular;
+    private RecyclerView mRecyclerNowPlaying, mRecyclerUpComing;
     private MovieAdapter mAdapterNowPlaying, mAdapterUpComing, mAdapterTopRated, mAdapterPopular;
-    private Button mButtonMoreNowPlaying, mButtonMoreUpComing, mButtonMoreTopRated,
-            mButtonMorePopular;
-    private RecyclerView.LayoutManager mLayoutManagerNowPlaying, mLayoutManagerUpComing,
-            mLayoutManagerTopRated, mLayoutManagerPopular;
+    private Button mButtonMoreNowPlaying, mButtonMoreUpComing;
+    private RecyclerView.LayoutManager mLayoutManagerNowPlaying, mLayoutManagerUpComing;
     private AutoScrollViewPager mAutoScrollViewPager;
     private AdsViewPagerAdapter mPagerAdapter;
     private CircleIndicator mCircleIndicator;
@@ -59,8 +57,6 @@ public class TabHomeFragment extends BaseFragment
 
         mPresenter.getListNowPlayingMovie();
         mPresenter.getListUpComingMovie();
-        mPresenter.getListTopRatedMovie();
-        mPresenter.getListPopularMovie();
     }
 
     @Nullable
@@ -75,8 +71,6 @@ public class TabHomeFragment extends BaseFragment
     private void initViews(View view) {
         mRecyclerNowPlaying = view.findViewById(R.id.recycler_now_playing);
         mRecyclerUpComing = view.findViewById(R.id.recycler_up_coming);
-        mRecyclerTopRated = view.findViewById(R.id.recycler_top_rated);
-        mRecyclerPopular = view.findViewById(R.id.recycler_popuplar);
 
         mAutoScrollViewPager = view.findViewById(R.id.view_pager_ads);
         mAutoScrollViewPager.startAutoScroll();
@@ -92,10 +86,6 @@ public class TabHomeFragment extends BaseFragment
         mLayoutManagerNowPlaying =
                 new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
         mLayoutManagerUpComing =
-                new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
-        mLayoutManagerTopRated =
-                new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
-        mLayoutManagerPopular =
                 new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false);
 
         mAdapterNowPlaying = new MovieAdapter(getActivity());
@@ -113,22 +103,12 @@ public class TabHomeFragment extends BaseFragment
         mRecyclerUpComing.setLayoutManager(mLayoutManagerUpComing);
         mRecyclerUpComing.setAdapter(mAdapterUpComing);
         mRecyclerUpComing.setHasFixedSize(true);
-        mRecyclerTopRated.setLayoutManager(mLayoutManagerTopRated);
-        mRecyclerTopRated.setAdapter(mAdapterTopRated);
-        mRecyclerTopRated.setHasFixedSize(true);
-        mRecyclerPopular.setLayoutManager(mLayoutManagerPopular);
-        mRecyclerPopular.setAdapter(mAdapterPopular);
-        mRecyclerPopular.setHasFixedSize(true);
 
         mButtonMoreNowPlaying = view.findViewById(R.id.button_more_now_playing);
         mButtonMoreUpComing = view.findViewById(R.id.button_more_up_coming);
-        mButtonMoreTopRated = view.findViewById(R.id.button_more_top_rated);
-        mButtonMorePopular = view.findViewById(R.id.button_more_popular);
 
         mButtonMoreNowPlaying.setOnClickListener(this);
         mButtonMoreUpComing.setOnClickListener(this);
-        mButtonMoreTopRated.setOnClickListener(this);
-        mButtonMorePopular.setOnClickListener(this);
     }
 
     @Override
@@ -144,9 +124,11 @@ public class TabHomeFragment extends BaseFragment
     }
 
     @Override
-    public void onItemClick(Movie movie) {
+    public void onItemClick(Film movie) {
         Intent intent = new Intent(getActivity(), DetailsMovieActivity.class);
-        intent.putExtra(Constant.EXTRA_MOVIE_ID, movie.getId());
+        Bundle b = new Bundle();
+        b.putSerializable("Movie",movie);
+        intent.putExtras(b);
         startActivity(intent);
     }
 
@@ -158,12 +140,6 @@ public class TabHomeFragment extends BaseFragment
                 break;
             case R.id.button_more_up_coming:
                 openMoreMoviesActivity(Constant.CATEGORY_UPCOMING);
-                break;
-            case R.id.button_more_top_rated:
-                openMoreMoviesActivity(Constant.CATEGORY_TOP_RATED);
-                break;
-            case R.id.button_more_popular:
-                openMoreMoviesActivity(Constant.CATEGORY_POPULAR);
                 break;
             default:
                 break;
@@ -177,7 +153,7 @@ public class TabHomeFragment extends BaseFragment
     }
 
     @Override
-    public void onListNowPlayingMovieSuccess(List<Movie> listNowPlayingMovie) {
+    public void onListNowPlayingMovieSuccess(List<Film> listNowPlayingMovie) {
         if (listNowPlayingMovie == null) {
             return;
         }
@@ -185,7 +161,7 @@ public class TabHomeFragment extends BaseFragment
     }
 
     @Override
-    public void onListUpComingMovieSuccess(List<Movie> listUpComingMovie) {
+    public void onListUpComingMovieSuccess(List<Film> listUpComingMovie) {
         if (listUpComingMovie == null) {
             return;
         }
@@ -194,17 +170,11 @@ public class TabHomeFragment extends BaseFragment
 
     @Override
     public void onListTopRatedMovieSuccess(List<Movie> listTopRatedMovie) {
-        if (listTopRatedMovie == null) {
-            return;
-        }
-        mAdapterTopRated.updateData(listTopRatedMovie);
+
     }
 
     @Override
     public void onListPopularMoviesSuccess(List<Movie> listPopularMovie) {
-        if (listPopularMovie == null) {
-            return;
-        }
-        mAdapterPopular.updateData(listPopularMovie);
+
     }
 }

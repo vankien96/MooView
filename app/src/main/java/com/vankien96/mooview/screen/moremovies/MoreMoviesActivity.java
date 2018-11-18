@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import com.vankien96.mooview.MainApplication;
 import com.vankien96.mooview.R;
+import com.vankien96.mooview.data.model.Film;
 import com.vankien96.mooview.data.model.Movie;
 import com.vankien96.mooview.data.service.config.MoviesApi;
 import com.vankien96.mooview.screen.BaseActivity;
@@ -43,14 +44,6 @@ public class MoreMoviesActivity extends BaseActivity
         initViews();
         setHomeButtonToolbar();
         mPresenter.getListMoviesByCategory();
-
-        mRecyclerView.addOnScrollListener(
-                new EndlessRecyclerOnScrollListener((GridLayoutManager) mLayoutManager) {
-                    @Override
-                    public void onLoadMore(int currentPage) {
-                        mPresenter.getListMoreMovie(currentPage);
-                    }
-                });
     }
 
     private void initViews() {
@@ -97,9 +90,11 @@ public class MoreMoviesActivity extends BaseActivity
     }
 
     @Override
-    public void onItemClick(Movie movie) {
+    public void onItemClick(Film movie) {
         Intent intent = new Intent(this, DetailsMovieActivity.class);
-        intent.putExtra(Constant.EXTRA_MOVIE_ID, movie.getId());
+        Bundle b = new Bundle();
+        b.putSerializable("Movie",movie);
+        intent.putExtras(b);
         startActivity(intent);
     }
 
@@ -113,11 +108,11 @@ public class MoreMoviesActivity extends BaseActivity
         if (movieList == null) {
             return;
         }
-        mAdapter.updateData(movieList);
+//        mAdapter.updateData(movieList);
     }
 
     @Override
-    public void onListMovieSuccess(List<Movie> movieList) {
+    public void onListMovieSuccess(List<Film> movieList) {
         if (movieList == null) {
             return;
         }
