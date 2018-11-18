@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.vankien96.mooview.R;
+import com.vankien96.mooview.data.model.Film;
 import com.vankien96.mooview.data.model.Movie;
 import com.vankien96.mooview.screen.OnRecyclerViewItemListener;
 import com.vankien96.mooview.utils.StringUtils;
@@ -23,7 +24,7 @@ import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder> {
 
-    private List<Movie> mMovieList = new ArrayList<>();
+    private List<Film> mMovieList = new ArrayList<>();
     private OnRecyclerViewItemListener mOnRecyclerViewItemListener;
     private Context mContext;
     private LayoutInflater mInflater;
@@ -54,7 +55,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
         mOnRecyclerViewItemListener = onRecyclerViewItemListener;
     }
 
-    public void updateData(List<Movie> movieList) {
+    public void updateData(List<Film> movieList) {
         if (movieList == null) {
             return;
         }
@@ -65,7 +66,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
 
     static class MovieHolder extends RecyclerView.ViewHolder {
 
-        private Movie mMovie;
+        private Film mMovie;
         private ImageView mPoster;
         private TextView mNameMovie;
         private OnRecyclerViewItemListener mOnRecyclerViewItemListener;
@@ -83,11 +84,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
             });
         }
 
-        public void bind(Movie movie) {
+        public void bind(Film movie) {
             mMovie = movie;
-            String urlPoster = StringUtils.convertPosterPathToUrlPoster(movie.getPosterPath());
-            String titleMovie = StringUtils.convertLongTitleToShortTitle(movie.getTitle(),
-                    movie.getReleaseDate());
+            String urlPoster = movie.getPoster();
+            String titleMovie = movie.getName();
             Glide.with(itemView.getContext()).load(urlPoster).into(mPoster);
             mNameMovie.setText(titleMovie);
         }

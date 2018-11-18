@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import com.vankien96.mooview.R;
 import com.vankien96.mooview.screen.BaseActivity;
-import com.vankien96.mooview.screen.login.LoginActivity;
 import com.vankien96.mooview.screen.main.MainActivity;
 import com.vankien96.mooview.utils.Constant;
 import java.security.MessageDigest;

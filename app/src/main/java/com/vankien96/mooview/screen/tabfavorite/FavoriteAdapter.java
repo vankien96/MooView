@@ -128,10 +128,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
 
         public void bind(MovieEntity movieEntity) {
             mMovieEntity = movieEntity;
-            String urlPoster =
-                    StringUtils.convertPosterPathToUrlPoster(movieEntity.getPosterPath());
-            String titleMovie = StringUtils.convertLongTitleToShortTitle(movieEntity.getTitle(),
-                    movieEntity.getReleaseDate());
+            String urlPoster = movieEntity.getPosterPath();
+            String titleMovie = movieEntity.getTitle();
             Glide.with(itemView.getContext()).load(urlPoster).into(mFavoritePoster);
             mFavoriteMovieName.setText(titleMovie);
             mImageFavoriteMovie.setImageResource(R.drawable.ic_favorite);

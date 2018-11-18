@@ -186,10 +186,71 @@
                 />
 
             <View
-                android:id="@+id/view_overview"
+                android:id="@+id/view_director"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_1"
                 android:layout_below="@+id/image_poster"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/colorView"
+                />
+
+            <TextView
+                android:id="@+id/director"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view_director"
+                android:padding="@dimen/dp_10"
+                android:text="Director"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/sp_25"
+                />
+
+            <TextView
+                android:id="@+id/text_director"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/director"
+                android:paddingLeft="@dimen/dp_12"
+                android:paddingRight="@dimen/dp_12"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/dp_16"
+                />
+            <View
+                android:id="@+id/view_actor"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_below="@+id/text_director"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/colorView"
+                />
+
+            <TextView
+                android:id="@+id/actor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view_actor"
+                android:padding="@dimen/dp_10"
+                android:text="Actor"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/sp_25"
+                />
+
+            <TextView
+                android:id="@+id/text_actor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/actor"
+                android:paddingLeft="@dimen/dp_12"
+                android:paddingRight="@dimen/dp_12"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/dp_16"
+                />
+
+            <View
+                android:id="@+id/view_overview"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_below="@+id/text_actor"
                 android:layout_marginTop="@dimen/dp_10"
                 android:background="@color/colorView"
                 />
@@ -289,22 +350,6 @@
                 android:layout_below="@+id/frame_trailer"
                 android:layout_marginTop="@dimen/dp_15"
                 android:background="@color/colorView"
-                />
-            <TextView
-                android:id="@+id/text_cast"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/view_cast"
-                android:padding="@dimen/dp_10"
-                android:text="@string/cast"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/sp_25"
-                />
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_cast"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/text_cast"
                 />
         </RelativeLayout>
     </android.support.v4.widget.NestedScrollView>

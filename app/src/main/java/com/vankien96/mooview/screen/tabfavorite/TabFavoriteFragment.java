@@ -177,9 +177,6 @@ public class TabFavoriteFragment extends BaseFragment
 
     @Override
     public void onClickItem(MovieEntity movieEntity) {
-        Intent intent = new Intent(getActivity(), DetailsMovieActivity.class);
-        intent.putExtra(Constant.EXTRA_MOVIE_ID, movieEntity.getId());
-        startActivity(intent);
     }
 
     public void invisibleRecyclerView() {
