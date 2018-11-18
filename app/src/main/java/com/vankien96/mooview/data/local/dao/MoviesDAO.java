@@ -28,7 +28,7 @@ public interface MoviesDAO {
     void deleteMovie(MovieEntity movieEntity);
 
     @Query("SELECT COUNT(*) FROM movie WHERE id=:id")
-    int isFavoriteMovie(int id);
+    int isFavoriteMovie(String id);
 
 
 }

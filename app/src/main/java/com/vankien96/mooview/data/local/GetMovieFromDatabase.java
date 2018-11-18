@@ -6,7 +6,7 @@ import android.os.AsyncTask;
  * Created by Admin on 21/12/2017.
  */
 
-public class GetMovieFromDatabase extends AsyncTask<Integer, Void, Integer> {
+public class GetMovieFromDatabase extends AsyncTask<String, Void, Integer> {
     private MovieDatabase mMovieDatabase;
 
     public GetMovieFromDatabase(MovieDatabase movieDatabase) {
@@ -14,7 +14,7 @@ public class GetMovieFromDatabase extends AsyncTask<Integer, Void, Integer> {
     }
 
     @Override
-    protected Integer doInBackground(Integer... integers) {
+    protected Integer doInBackground(String... integers) {
         int isFavorite;
         isFavorite = mMovieDatabase.getMovieDAO().isFavoriteMovie(integers[0]);
         return isFavorite;

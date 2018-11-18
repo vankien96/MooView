@@ -1,6 +1,7 @@
 package com.vankien96.mooview.screen.detailsmovie;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import com.vankien96.mooview.data.local.OnDeleteDataListener;
 import com.vankien96.mooview.data.local.OnInsertDataListener;
 import com.vankien96.mooview.data.local.entity.MovieEntity;
 import com.vankien96.mooview.data.model.Cast;
+import com.vankien96.mooview.data.model.Film;
 import com.vankien96.mooview.data.model.Movie;
 import com.vankien96.mooview.data.model.Trailer;
 import com.vankien96.mooview.data.service.config.MoviesApi;
@@ -67,7 +69,7 @@ public class DetailsMovieActivity extends BaseActivity
     private static final int FIRST_TRAILER = 0;
     private static final String USERS_NODE = "Users";
     private ImageView mImageBackdrop, mImagePoster;
-    private TextView mTextReleaseDate, mTextRunTime, mTextGenreMovie, mTextOverview, mTextRateMovie;
+    private TextView mTextReleaseDate, mTextRunTime, mTextGenreMovie, mTextOverview, mTextRateMovie, mTextDirector, mTextActor;
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
     private Toolbar mToolbar;
     private FloatingActionButton mFloatingFavoriteButton;
@@ -77,7 +79,6 @@ public class DetailsMovieActivity extends BaseActivity
     private YouTubePlayerFragment mYouTubePlayer;
     private YouTubePlayer.OnInitializedListener mOnPlayerInitListener;
     private YouTubeThumbnailView mThumbnailView;
-    private RecyclerView mRecyclerCast;
     private RecyclerView.LayoutManager mLayoutManager;
     private CastAdapter mAdapter;
     DetailsMovieContract.Presenter mPresenter;
@@ -98,14 +99,11 @@ public class DetailsMovieActivity extends BaseActivity
         mPresenter.setView(this);
         MoviesApi moviesApi = MainApplication.getMoviesApi();
         mMovieDatabase = MainApplication.getMovieDatabase();
-        mPresenter.setMovieApi(moviesApi);
-        mPresenter.getDetailsMovie();
-        mPresenter.getMovieTrailers();
-        mPresenter.getCastsMovie();
 
         initViews();
         setHomeButtonToolbar();
         initDatabaseReference();
+        setDataIntoView();
     }
 
     private void initViews() {
@@ -116,6 +114,8 @@ public class DetailsMovieActivity extends BaseActivity
         mTextGenreMovie = findViewById(R.id.text_kind_movie);
         mTextOverview = findViewById(R.id.text_describe_movie);
         mTextRateMovie = findViewById(R.id.text_rate);
+        mTextDirector = findViewById(R.id.text_director);
+        mTextActor = findViewById(R.id.text_actor);
         mFloatingFavoriteButton = findViewById(R.id.floating_favorite);
         mRelativeLayout = findViewById(R.id.relative_play);
         mRelativeLayout.setOnClickListener(this);
@@ -141,11 +141,7 @@ public class DetailsMovieActivity extends BaseActivity
         mCollapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
         mToolbar = findViewById(R.id.toolbar_detail_movie);
 
-        mRecyclerCast = findViewById(R.id.recycler_cast);
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        mAdapter = new CastAdapter(this);
-        mRecyclerCast.setLayoutManager(mLayoutManager);
-        mRecyclerCast.setAdapter(mAdapter);
 
         mSharedPreferences = getSharedPreferences(Constant.PREF_NAME, Context.MODE_PRIVATE);
     }
@@ -159,6 +155,39 @@ public class DetailsMovieActivity extends BaseActivity
                 onBackPressed();
             }
         });
+    }
+
+    private void setDataIntoView() {
+        Intent intent = getIntent();
+        Bundle b = intent.getExtras();
+        Film film = (Film) b.getSerializable("Movie");
+
+        String urlBackdrop = film.getPoster();
+        String urlPoster = film.getPoster();
+        String rateMovie = film.getScore() + MAX_POINT;
+        String runTimeMovie = film.getTime();
+        String releaseDate = film.getDate();
+
+        mTitleMovie = film.getName();
+        mPosterPath = film.getPoster();
+        mReleaseDate = film.getDate();
+
+        Glide.with(this).load(urlBackdrop).into(mImageBackdrop);
+        Glide.with(this).load(urlPoster).into(mImagePoster);
+        mTextReleaseDate.setText(releaseDate);
+        mTextRateMovie.setText(rateMovie);
+        mTextRunTime.setText(runTimeMovie);
+        mTextOverview.setText(film.getDescription());
+        mTextDirector.setText(film.getDirector());
+        mTextActor.setText(film.getActors());
+        mCollapsingToolbarLayout.setTitle(film.getName());
+        mFloatingFavoriteButton.setOnClickListener(this);
+        if (film.getTrailer() != null) {
+            String key = film.getTrailer().replace("www.youtube.com/embed/", "");
+            key = key.replace("?hd=1", "");
+            mYoutubeKey = key;
+            mThumbnailView.initialize(Constant.GOOGLE_API_KEY, this);
+        }
     }
 
     private boolean isFavoriteMovie() {
@@ -204,8 +233,11 @@ public class DetailsMovieActivity extends BaseActivity
     }
 
     @Override
-    public Integer getMovieId() {
-        return getIntent().getIntExtra(Constant.EXTRA_MOVIE_ID, 0);
+    public String getMovieId() {
+        Intent intent = getIntent();
+        Bundle b = intent.getExtras();
+        Film film = (Film) b.getSerializable("Movie");
+        return film.getId();
     }
 
     @Override

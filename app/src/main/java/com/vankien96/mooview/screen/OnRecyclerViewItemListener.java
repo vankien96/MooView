@@ -1,5 +1,6 @@
 package com.vankien96.mooview.screen;
 
+import com.vankien96.mooview.data.model.Film;
 import com.vankien96.mooview.data.model.Movie;
 
 /**
@@ -7,5 +8,5 @@ import com.vankien96.mooview.data.model.Movie;
  */
 
 public interface OnRecyclerViewItemListener {
-    void onItemClick(Movie movie);
+    void onItemClick(Film movie);
 }

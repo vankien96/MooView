@@ -1,5 +1,6 @@
 package com.vankien96.mooview.screen.tabhome;
 
+import com.vankien96.mooview.data.model.Film;
 import com.vankien96.mooview.data.model.Movie;
 import com.vankien96.mooview.data.service.config.MoviesApi;
 import com.vankien96.mooview.screen.BasePresenter;
@@ -14,9 +15,9 @@ interface TabHomeContract {
      * View.
      */
     interface HomeView extends BaseView {
-        void onListNowPlayingMovieSuccess(List<Movie> listNowPlayingMovie);
+        void onListNowPlayingMovieSuccess(List<Film> listNowPlayingMovie);
 
-        void onListUpComingMovieSuccess(List<Movie> listUpComingMovie);
+        void onListUpComingMovieSuccess(List<Film> listUpComingMovie);
 
         void onListTopRatedMovieSuccess(List<Movie> listTopRatedMovie);
 

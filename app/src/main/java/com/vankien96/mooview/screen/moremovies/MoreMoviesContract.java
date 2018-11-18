@@ -1,5 +1,6 @@
 package com.vankien96.mooview.screen.moremovies;
 
+import com.vankien96.mooview.data.model.Film;
 import com.vankien96.mooview.data.model.Movie;
 import com.vankien96.mooview.data.service.config.MoviesApi;
 import com.vankien96.mooview.screen.BasePresenter;
@@ -18,7 +19,7 @@ interface MoreMoviesContract {
 
         void onListMoreMoviesSuccess(List<Movie> results);
 
-        void onListMovieSuccess(List<Movie> results);
+        void onListMovieSuccess(List<Film> results);
     }
 
     /**

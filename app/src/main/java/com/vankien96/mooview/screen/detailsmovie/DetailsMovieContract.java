@@ -16,7 +16,7 @@ interface DetailsMovieContract {
      * View.
      */
     interface DetailsMovieView extends BaseView {
-        Integer getMovieId();
+        String getMovieId();
 
         void onDetailsMovieSuccess(Movie body, List<String> listGenre);
 
